@@ -18,10 +18,10 @@ public class ProductCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name="assigned_at",nullable = false)
     private OffsetDateTime assignedAt;
 
-    @Column(nullable = false)
+    @Column(name="assigned_by",nullable = false)
     private String assignedBy;
 
     @ManyToOne(fetch = FetchType.LAZY)

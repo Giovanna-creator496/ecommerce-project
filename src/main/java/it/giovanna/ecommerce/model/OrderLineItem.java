@@ -25,6 +25,6 @@ public class OrderLineItem {
     private Money lockedPrice;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="purchase_order_id")
+    @JoinColumn(name="purchase_order_id",nullable = false)
     private PurchaseOrder purchaseOrder;
 }

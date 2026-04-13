@@ -20,14 +20,13 @@ public class Customer {
     @GeneratedValue
     private UUID id;
 
-    @Column(nullable=false,unique=true)
+    @Column(name="customer_number",nullable=false,unique=true)
     private String customerNumber;
 
     @Column(nullable=false,unique=true)
     private String email;
 
-    @Column(nullable=false)
-
+    @Column(name="created_at",nullable=false)
     private Instant createdAt;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")

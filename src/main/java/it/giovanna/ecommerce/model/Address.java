@@ -22,10 +22,10 @@ public class Address {
     @Column(nullable = false)
     private String city;
 
-    @Column(nullable = false)
+    @Column(name="zip_code",nullable = false)
     private String zipCode;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="customer_id")
+    @JoinColumn(name="customer_id", nullable = false)
     private Customer customer;
 }

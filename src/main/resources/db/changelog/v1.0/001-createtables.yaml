@@ -15,7 +15,6 @@ databaseChangeLog:
                 type: VARCHAR(50)
                 constraints:
                   nullable: false
-                  unique: true
 
             - column:
                 name: email
@@ -24,7 +23,268 @@ databaseChangeLog:
                   nullable: false
 
             - column:
-                name: createdAt
+                name: created_at
                 type: TIMESTAMP WITH TIMEZONE
                 constraints:
                   nullable: false
+
+  - changeSet:
+      id: 002-create-customer_profile-table
+      author: giovanna
+      changes:
+        - createTable:
+          tableName: customer_profile
+          columns:
+            - column:
+                name: id
+                type: UUID
+
+            - column:
+                name: name
+                type: VARCHAR(50)
+                constraints:
+                  nullable: false
+
+            - column:
+                name: surname
+                type: VARCHAR(50)
+                constraints:
+                  nullable: false
+
+            - column:
+                name: phone_number
+                type: VARCHAR(20)
+                constraints:
+                  nullable: false
+
+  - changeSet:
+      id: 003-create-address-table
+      author: giovanna
+      changes:
+        - createTable:
+          tableName: address
+          columns:
+            - column:
+                name: id
+                type: BIGINT
+
+            - column:
+                name: street
+                type: VARCHAR(255)
+                constraints:
+                  nullable: false
+
+            - column:
+                name: city
+                type: VARCHAR(100)
+                constraints:
+                  nullable: false
+
+            - column:
+                name: zip_code
+                type: VARCHAR(20)
+                constraints:
+                  nullable: false
+
+            - column:
+                name: customer_id
+                type: UUID
+                constraints:
+                  nullable: false
+
+  - changeSet:
+      id: 004-create-product-table
+      author: giovanna
+      changes:
+        - createTable:
+          tableName: product
+          columns:
+            - column:
+                name: id
+                type: BIGINT
+
+            - column:
+                name: sku
+                type: VARCHAR(100)
+                constraints:
+                  nullable: false
+
+            - column:
+                name: name
+                type: VARCHAR(50)
+                constraints:
+                  nullable: false
+
+            - column:
+                name: active
+                type: BOOLEAN
+                constraints:
+                  nullable: false
+
+            - column:
+                name: amount
+                type: DECIMAL(19,2)
+                constraints:
+                  nullable: false
+
+            - column:
+                name: currency_code
+                type: VARCHAR(3)
+                constraints:
+                  nullable: false
+
+  - changeSet:
+      id: 005-create-category-table
+      author: giovanna
+      changes:
+        - createTable:
+          tableName: category
+          columns:
+            - column:
+                name: id
+                type: BIGINT
+
+            - column:
+                name: name
+                type: VARCHAR(100)
+                constraints:
+                  nullable: false
+
+            - column:
+                name: parent_category_id
+                type: BIGINT
+                constraints:
+                  nullable: false
+
+  - changeSet:
+      id: 006-product_category-table
+      author: giovanna
+      changes:
+        - createTable:
+          tableName: product_category
+          columns:
+            - column:
+                name: id
+                type: BIGINT
+
+            - column:
+                name: assigned_at
+                type: TIMESTAMP WITH TIME ZONE
+                constraints:
+                  nullable: false
+
+            - column:
+                name: assigned_by
+                type: VARCHAR(100)
+                constraints:
+                  nullable: false
+
+            - column:
+                name: product_id
+                type: BIGINT
+                constraints:
+                  nullable: false
+
+            - column:
+                name: category_id
+                type: BIGINT
+                constraints:
+                  nullable: false
+
+  - changeSet:
+      id: 007-create-purchase_order-table
+      author: giovanna
+      changes:
+        - createTable:
+          tableName: purchase_order
+          columns:
+            - column:
+                name: id
+                type: BIGINT
+
+            - column:
+                name: order_number
+                type: VARCHAR(255)
+                constraints:
+                  nullable: false
+
+            - column:
+                name: order_date
+                type: TIMESTAMP WITH TIME ZONE
+                constraints:
+                  nullable: false
+
+            - column:
+                name: status
+                type: VARCHAR(50)
+                constraints:
+                  nullable: false
+
+  - changeSet:
+      id: 008-create-order_line_item-table
+      author: giovanna
+      changes:
+        - createTable:
+          tableName: order_line_item
+          columns:
+            - column:
+                name: id
+                type: BIGINT
+
+            - column:
+                name: quantity
+                type: INTEGER
+                constraints:
+                  nullable: false
+
+            - column:
+                name: amount
+                type: DECIMAL(19,2)
+                constraints:
+                  nullable: false
+
+            - column:
+                name: currency_code
+                type: VARCHAR(3)
+                constraints:
+                  nullable: false
+
+
+            - column:
+                name: purchase_order_id
+                type: BIGINT
+                constraints:
+                  nullable: false
+
+  - changeSet:
+      id: 009-create-shipment-table
+      author: giovanna
+      changes:
+        - createTable:
+          tableName: shipment
+          columns:
+            - column:
+                name: id
+                type: BIGINT
+
+            - column:
+                name: tracking_number
+                type: VARCHAR(255)
+                constraints:
+                  nullable: false
+
+            - column:
+                name: shipped_at
+                type: TIMESTAMP WITH TIME ZONE
+                constraints:
+                  nullable: false
+
+            - column:
+                name: purchase_order_id
+                type: BIGINT
+                constraints:
+                  nullable: false
+
+
+
+

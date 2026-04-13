@@ -19,10 +19,10 @@ public class PurchaseOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique=true)
+    @Column(name="order_number",nullable = false, unique=true)
     private String orderNumber;
 
-    @Column(nullable = false)
+    @Column(name="order_date",nullable = false)
     private OffsetDateTime orderDate;
 
     @Enumerated(EnumType.STRING)

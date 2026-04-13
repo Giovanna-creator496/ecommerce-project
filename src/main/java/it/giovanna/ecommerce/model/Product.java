@@ -27,6 +27,7 @@ public class Product {
     @Column(nullable = false)
     private boolean active;
 
+    @Column(nullable=false)
     @Embedded
     private Money price;
 

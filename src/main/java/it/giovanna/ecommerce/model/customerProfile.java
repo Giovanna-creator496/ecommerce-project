@@ -23,7 +23,7 @@ public class customerProfile {
     @Column(nullable = false)
     private String surname;
 
-    @Column(nullable = false,unique = true)
+    @Column(name="phone_number",nullable = false,unique = true)
     private String phoneNumber;
 
     @OneToOne(fetch = FetchType.LAZY)

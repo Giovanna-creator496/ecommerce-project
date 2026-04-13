@@ -18,10 +18,10 @@ public class Shipment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false,unique = true)
+    @Column(name="tracking_number",nullable = false,unique = true)
     private String trackingNumber;
 
-    @Column(nullable = false)
+    @Column(name="shipped_at",nullable = false)
     private OffsetDateTime shippedAt;
 
     @OneToOne(fetch = FetchType.LAZY)
