@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-customer-table
+      author: giovanna
+      changes:
+        - createTable:
+          tableName: customer
+          columns:
+            - column:
+                name: id
+                type: UUID
+
+            - column:
+                name: customer_number
+                type: VARCHAR(50)
+                constraints:
+                  nullable: false
+                  unique: true
+
+            - column:
+                name: email
+                type: VARCHAR(255)
+                constraints:
+                  nullable: false
+
+            - column:
+                name: createdAt
+                type: TIMESTAMP WITH TIMEZONE
+                constraints:
+                  nullable: false
