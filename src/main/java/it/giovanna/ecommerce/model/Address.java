@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@EqualsAndHashCode(of="id")
+@EqualsAndHashCode(of={"street", "city", "zipCode"})
 public class Address {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

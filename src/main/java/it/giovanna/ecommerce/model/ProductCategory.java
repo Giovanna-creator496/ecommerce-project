@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.OffsetDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name="product_category")
@@ -12,7 +13,6 @@ import java.time.OffsetDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@EqualsAndHashCode(of={"product","category"})
 public class ProductCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,4 +31,18 @@ public class ProductCategory {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="category_id")
     private Category category;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ProductCategory)) return false;
+        ProductCategory that = (ProductCategory) o;
+        return Objects.equals(getProduct(), that.getProduct()) &&
+                Objects.equals(getCategory(), that.getCategory());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getProduct(), getCategory());
+    }
 }

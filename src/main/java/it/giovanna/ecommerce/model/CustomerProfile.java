@@ -12,8 +12,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@EqualsAndHashCode(of="id")
-public class customerProfile {
+@EqualsAndHashCode(of={"name", "surname", "phoneNumber"})
+public class CustomerProfile {
     @Id
     private UUID id;
 

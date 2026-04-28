@@ -27,7 +27,7 @@ public class Category {
     @OneToMany(mappedBy = "parentCategory")
     private Set<Category> subCategories;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", orphanRemoval = true)
     private Set<ProductCategory> productCategories;
 
 

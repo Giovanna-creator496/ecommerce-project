@@ -31,6 +31,6 @@ public class Product {
     @Embedded
     private Money price;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", orphanRemoval = true)
     private Set<ProductCategory> productCategories;
 }
