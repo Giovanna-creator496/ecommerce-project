@@ -1,0 +1,158 @@
+databaseChangeLog:
+  - changeSet:
+      id: 22
+      author: giovanna
+      context: dev, test, prod
+      changes:
+
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  {name: id,valueNumeric: 1}
+              - column:
+                  {name: name, value: Electronics}
+
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  { name: id,valueNumeric: 5 }
+              - column:
+                  { name: name, value: Fashion}
+
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  { name: id,valueNumeric: 8 }
+              - column:
+                  { name: name, value: Books}
+
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  { name: id,valueNumeric: 11 }
+              - column:
+                  { name: name, value: Beauty}
+
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  { name: id,valueNumeric: 14 }
+              - column:
+                  { name: name, value: Sports }
+
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  { name: id,valueNumeric: 2 }
+              - column:
+                  { name: name, value: Computers}
+              - column:
+                  {name: parent_category_id, valueNumeric: 1}
+
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  { name: id,valueNumeric: 3 }
+              - column:
+                  { name: name, value: Phones }
+              - column:
+                  { name: parent_category_id, valueNumeric: 1 }
+
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  { name: id,valueNumeric: 4 }
+              - column:
+                  { name: name, value: Audio }
+              - column:
+                  { name: parent_category_id, valueNumeric: 1 }
+
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  { name: id,valueNumeric: 6 }
+              - column:
+                  { name: name, value: Men }
+              - column:
+                  { name: parent_category_id, valueNumeric: 5 }
+
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  { name: id,valueNumeric: 7 }
+              - column:
+                  { name: name, value: Women }
+              - column:
+                  { name: parent_category_id, valueNumeric: 5 }
+
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  { name: id,valueNumeric: 9 }
+              - column:
+                  { name: name, value: Fiction }
+              - column:
+                  { name: parent_category_id, valueNumeric: 8 }
+
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  { name: id,valueNumeric: 10 }
+              - column:
+                  { name: name, value: Education}
+              - column:
+                  { name: parent_category_id, valueNumeric: 8 }
+
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  { name: id,valueNumeric: 12 }
+              - column:
+                  { name: name, value: Skincare }
+              - column:
+                  { name: parent_category_id, valueNumeric: 11 }
+
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  { name: id,valueNumeric: 13 }
+              - column:
+                  { name: name, value: Makeup }
+              - column:
+                  { name: parent_category_id, valueNumeric: 11 }
+
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  { name: id,valueNumeric: 15 }
+              - column:
+                  { name: name, value: Fitness }
+              - column:
+                  { name: parent_category_id, valueNumeric: 14 }
+
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  { name: id,valueNumeric: 16 }
+              - column:
+                  { name: name, value: Outdoor }
+              - column:
+                  { name: parent_category_id, valueNumeric: 14 }
+
+

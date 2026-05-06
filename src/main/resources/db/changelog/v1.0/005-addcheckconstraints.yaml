@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: 21
+      author: giovanna
+      changes:
+        - addCheckConstraint:
+            tableName: order_line_item
+            constraintName: ck_order_item_quantity
+            constraintBody: quantity>0

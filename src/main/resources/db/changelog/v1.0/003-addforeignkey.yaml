@@ -1,0 +1,83 @@
+databaseChangeLog:
+  - changeSet:
+      id: 10
+      author: giovanna
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: customer_profile
+            baseColumnNames: id
+            referencedTableName: customer
+            referencedColumnNames: id
+            constraintName: fk_customer_profile_customer
+            onDelete: CASCADE
+
+  - changeSet:
+      id: 11
+      author: giovanna
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: address
+            baseColumnNames: customer_id
+            referencedTableName: customer
+            referencedColumnNames: id
+            constraintName: fk_address_customer
+
+  - changeSet:
+      id: 12
+      author: giovanna
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: category
+            baseColumnNames: parent_category_id
+            referencedTableName: category
+            referencedColumnNames: id
+            constraintName: fk_category_parent
+
+  - changeSet:
+      id: 13
+      author: giovanna
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: product_category
+            baseColumnNames: product_id
+            referencedTableName: product
+            referencedColumnNames: id
+            constraintName: fk_pc_product
+
+  - changeSet:
+      id: 14
+      author: giovanna
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: product_category
+            baseColumnNames: category_id
+            referencedTableName: category
+            referencedColumnNames: id
+            constraintName: fk_pc_category
+
+  - changeSet:
+      id: 15
+      author: giovanna
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: order_line_item
+            baseColumnNames: purchase_order_id
+            referencedTableName: purchase_order
+            referencedColumnNames: id
+            constraintName: fk_order_item
+            onDelete: CASCADE
+
+  - changeSet:
+      id: 16
+      author: giovanna
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: shipment
+            baseColumnNames: purchase_order_id
+            referencedTableName: purchase_order
+            referencedColumnNames: id
+            constraintName: fk_shipment_order
+            onDelete: CASCADE
+
+
+

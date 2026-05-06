@@ -1,0 +1,178 @@
+databaseChangeLog:
+  - changeSet:
+      id: 22
+      author: giovanna
+      context: dev
+      changes:
+
+        - insert:
+            tableName: customer
+            columns:
+              - column:
+                  { name: id,value: 1857395-358488-474831 }
+              - column:
+                  { name: customer_number, value: CUST001 }
+              - column:
+                  { name: email, value: c1@test.com  }
+
+        - insert:
+            tableName: customer
+            columns:
+              - column:
+                  { name: id,value: 1857395-358488-474832 }
+              - column:
+                  { name: customer_number, value: CUST002 }
+              - column:
+                  { name: email, value: c2@test.com }
+
+        - insert:
+            tableName: customer
+            columns:
+              - column:
+                  { name: id,value: 1857395-358488-474833 }
+              - column:
+                  { name: customer_number, value: CUST003 }
+              - column:
+                  { name: email, value: c3@test.com }
+
+        - insert:
+            tableName: customer
+            columns:
+              - column:
+                  { name: id,value: 1857395-358488-474834 }
+              - column:
+                  { name: customer_number, value: CUST004 }
+              - column:
+                  { name: email, value: c4@test.com }
+
+        - insert:
+            tableName: customer
+            columns:
+              - column:
+                  { name: id,value: 1857395-358488-474835 }
+              - column:
+                  { name: customer_number, value: CUST005 }
+              - column:
+                  { name: email, value: c5@test.com }
+
+        - insert:
+            tableName: customer
+            columns:
+              - column:
+                  { name: id,value: 1857395-358488-474836 }
+              - column:
+                  { name: customer_number, value: CUST006 }
+              - column:
+                  { name: email, value: c6@test.com }
+
+        - insert:
+            tableName: customer
+            columns:
+              - column:
+                  { name: id,value: 1857395-358488-474837 }
+              - column:
+                  { name: customer_number, value: CUST007 }
+              - column:
+                  { name: email, value: c7@test.com }
+
+        - insert:
+            tableName: customer
+            columns:
+              - column:
+                  { name: id,value: 1857395-358488-474838 }
+              - column:
+                  { name: customer_number, value: CUST008 }
+              - column:
+                  { name: email, value: c8@test.com }
+
+        - insert:
+            tableName: customer
+            columns:
+              - column:
+                  { name: id,value: 1857395-358488-474839 }
+              - column:
+                  { name: customer_number, value: CUST009 }
+              - column:
+                  { name: email, value: c9@test.com }
+
+        - insert:
+            tableName: customer
+            columns:
+              - column:
+                  { name: id,value: 1857395-358488-4748310 }
+              - column:
+                  { name: customer_number, value: CUST0010 }
+              - column:
+                  { name: email, value: c10@test.com }
+
+        - insert:
+            tableName: purchase_order
+            columns:
+              - column:
+                  { name: id,valueNumeric: 1}
+              - column:
+                  { name: order_number, value: ORD01 }
+              - column:
+                  { name: customer_id, value: 1857395-358488-474831}
+              - column:
+                  {name: status, value: PENDING}
+
+        - insert:
+            tableName: purchase_order
+            columns:
+              - column:
+                  { name: id,valueNumeric: 2 }
+              - column:
+                  { name: order_number, value: ORD02 }
+              - column:
+                  { name: customer_id, value: 1857395-358488-474834 }
+              - column:
+                  { name: status, value: SHIPPED }
+
+        - insert:
+            tableName: purchase_order
+            columns:
+              - column:
+                  { name: id,valueNumeric: 3 }
+              - column:
+                  { name: order_number, value: ORD03 }
+              - column:
+                  { name: customer_id, value: 1857395-358488-474838 }
+              - column:
+                  { name: status, value: CANCELLED }
+
+        - insert:
+            tableName: purchase_order
+            columns:
+              - column:
+                  { name: id,valueNumeric: 4 }
+              - column:
+                  { name: order_number, value: ORD04 }
+              - column:
+                  { name: customer_id, value: 1857395-358488-4748310 }
+              - column:
+                  { name: status, value: SHIPPED }
+
+        - insert:
+            tableName: purchase_order
+            columns:
+              - column:
+                  { name: id,valueNumeric: 5 }
+              - column:
+                  { name: order_number, value: ORD05 }
+              - column:
+                  { name: customer_id, value: 1857395-358488-474839 }
+              - column:
+                  { name: status, value: PENDING }
+
+        - insert:
+            tableName: purchase_order
+            columns:
+              - column:
+                  { name: id,valueNumeric: 6 }
+              - column:
+                  { name: order_number, value: ORD06 }
+              - column:
+                  { name: customer_id, value: 1857395-358488-474833 }
+              - column:
+                  { name: status, value: CANCELLED }
