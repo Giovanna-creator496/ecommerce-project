@@ -32,9 +32,9 @@ databaseChangeLog:
       author: giovanna
       changes:
         - addPrimaryKey:
-            tableName: address
+            tableName: product
             columnNames: id
-            constraintName: pk_address_id
+            constraintName: pk_product_id
 
   - changeSet:
       id: 5

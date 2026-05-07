@@ -1,9 +1,15 @@
 databaseChangeLog:
   - include:
       file: db/changelog/v1.0/001-createtables.yaml
+  - include:
       file: db/changelog/v1.0/002-addprimarykeys.yaml
+  - include:
       file: db/changelog/v1.0/003-addforeignkey.yaml
+  - include:
       file: db/changelog/v1.0/004-adduniqueconstraints.yaml
+  - include:
       file: db/changelog/v1.0/005-addcheckconstraints.yaml
+  - include:
       file: db/changelog/v1.1/006-seed-reference-data.yaml
+  - include:
       file: db/changelog/v1.1/007-seed-dev-data.yaml
