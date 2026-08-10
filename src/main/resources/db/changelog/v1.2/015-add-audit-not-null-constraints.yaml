@@ -1,0 +1,65 @@
+databaseChangeLog:
+  - changeSet:
+      id: 014-add-audit-not-null-constraints
+      author: giovanna
+      changes:
+
+        # CUSTOMER
+        - addNotNullConstraint:
+            tableName: customer
+            columnName: updated_at
+            columnDataType: TIMESTAMP WITH TIME ZONE
+
+        - addNotNullConstraint:
+            tableName: customer
+            columnName: created_by
+            columnDataType: VARCHAR(255)
+
+        - addNotNullConstraint:
+            tableName: customer
+            columnName: updated_by
+            columnDataType: VARCHAR(255)
+
+
+        # PRODUCT
+        - addNotNullConstraint:
+            tableName: product
+            columnName: created_at
+            columnDataType: TIMESTAMP WITH TIME ZONE
+
+        - addNotNullConstraint:
+            tableName: product
+            columnName: updated_at
+            columnDataType: TIMESTAMP WITH TIME ZONE
+
+        - addNotNullConstraint:
+            tableName: product
+            columnName: created_by
+            columnDataType: VARCHAR(255)
+
+        - addNotNullConstraint:
+            tableName: product
+            columnName: updated_by
+            columnDataType: VARCHAR(255)
+
+
+        # PURCHASE ORDER
+        - addNotNullConstraint:
+            tableName: purchase_order
+            columnName: created_at
+            columnDataType: TIMESTAMP WITH TIME ZONE
+
+        - addNotNullConstraint:
+            tableName: purchase_order
+            columnName: updated_at
+            columnDataType: TIMESTAMP WITH TIME ZONE
+
+        - addNotNullConstraint:
+            tableName: purchase_order
+            columnName: created_by
+            columnDataType: VARCHAR(255)
+
+        - addNotNullConstraint:
+            tableName: purchase_order
+            columnName: updated_by
+            columnDataType: VARCHAR(255)

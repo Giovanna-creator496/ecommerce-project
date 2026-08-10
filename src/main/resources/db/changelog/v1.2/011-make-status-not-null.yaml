@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: 011-make-status-not-null
+      author: giovanna
+      changes:
+      addNotNullConstraint:
+        tableName: product
+        columnName: prod_status
+        columnDataType: VARCHAR(50)

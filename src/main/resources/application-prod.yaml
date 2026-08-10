@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url:
+      jdbc:postgresql://localhost:5432/app
+
+  liquibase:
+    contexts: prod

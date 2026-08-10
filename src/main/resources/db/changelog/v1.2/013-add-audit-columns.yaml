@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: 013-add-audit-columns
+      author: giovanna
+      changes:
+        - addColumn:
+            tableName: purchase_order
+            columns:
+              - column: { name: created_at, type: TIMESTAMP WITH TIME ZONE}
+              - column: { name: updated_at, type: TIMESTAMP WITH TIME ZONE }
+              - column: { name: created_by, type: VARCHAR(255)}
+              - column: { name: updated_by, type: VARCHAR(255)}
+        - addColumn:
+            tableName: customer
+            columns:
+              - column: { name: updated_at, type: TIMESTAMP WITH TIME ZONE }
+              - column: { name: created_by, type: VARCHAR(255)}
+              - column: { name: updated_by, type: VARCHAR(255)}
+        - addColumn:
+            tableName: product
+            columns:
+              - column: { name: created_at, type: TIMESTAMP WITH TIME ZONE}
+              - column: { name: updated_at, type: TIMESTAMP WITH TIME ZONE}
+              - column: { name: created_by, type: VARCHAR(255)}
+              - column: { name: updated_by, type: VARCHAR(255) }

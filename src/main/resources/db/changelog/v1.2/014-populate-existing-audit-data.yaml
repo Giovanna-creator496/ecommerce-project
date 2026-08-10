@@ -1,0 +1,55 @@
+databaseChangeLog:
+  - changeSet:
+      id: 014-populate-existing-audit-data
+      author: giovanna
+      changes:
+
+        # CUSTOMER
+        - update:
+            tableName: customer
+            columns:
+              - column:
+                  name: updated_at
+                  valueComputed: now()
+              - column:
+                  name: created_by
+                  value: system_admin
+              - column:
+                  name: updated_by
+                  value: system_admin
+
+
+        # PRODUCT
+        - update:
+            tableName: product
+            columns:
+              - column:
+                  name: created_at
+                  valueComputed: now()
+              - column:
+                  name: updated_at
+                  valueComputed: now()
+              - column:
+                  name: created_by
+                  value: system_admin
+              - column:
+                  name: updated_by
+                  value: system_admin
+
+
+        # PURCHASE ORDER
+        - update:
+            tableName: purchase_order
+            columns:
+              - column:
+                  name: created_at
+                  valueComputed: now()
+              - column:
+                  name: updated_at
+                  valueComputed: now()
+              - column:
+                  name: created_by
+                  value: system_admin
+              - column:
+                  name: updated_by
+                  value: system_admin

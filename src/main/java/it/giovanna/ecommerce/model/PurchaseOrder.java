@@ -2,6 +2,7 @@ package it.giovanna.ecommerce.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.OffsetDateTime;
 import java.util.Set;
@@ -12,9 +13,9 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@EqualsAndHashCode(of="orderNumber")
-public class PurchaseOrder {
+@SuperBuilder
+@EqualsAndHashCode(of="orderNumber", callSuper = false)
+public class PurchaseOrder extends AuditableBaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,5 +33,9 @@ public class PurchaseOrder {
     @OneToMany(mappedBy = "purchaseOrder",orphanRemoval = true)
     @OrderBy("id ASC")
     private Set<OrderLineItem> orderLineItems;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "payment_id", referencedColumnName = "id", unique = true)
+    private Payment payment;
 
 }

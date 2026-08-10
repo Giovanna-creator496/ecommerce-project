@@ -2,7 +2,7 @@ databaseChangeLog:
   - changeSet:
       id: 22
       author: giovanna
-      context: dev
+      context: dev,test
       changes:
 
         - insert:

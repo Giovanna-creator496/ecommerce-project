@@ -1,0 +1,56 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 0072-seed-product-test
+      author: giovanna
+      context: dev,test
+
+      changes:
+
+        - insert:
+            tableName: product
+            columns:
+
+              - column:
+                  name: id
+                  valueNumeric: 1
+
+              - column:
+                  name: sku
+                  value: TEST-001
+
+              - column:
+                  name: name
+                  value: Test Mouse
+
+              - column:
+                  name: prod_status
+                  value: AVAILABLE
+
+              - column:
+                  name: amount
+                  valueNumeric: 20.00
+
+              - column:
+                  name: currency_code
+                  value: EUR
+
+              - column:
+                  name: created_at
+                  valueComputed: now()
+
+              - column:
+                  name: updated_at
+                  valueComputed: now()
+
+              - column:
+                  name: created_by
+                  value: TEST
+
+              - column:
+                  name: updated_by
+                  value: TEST
+
+              - column:
+                  name: version
+                  valueNumeric: 0

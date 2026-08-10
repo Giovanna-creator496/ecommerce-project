@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: 012-add-check-constraint-enum
+      author: giovanna
+      changes:
+      - sql:
+          sql: "ALTER TABLE product ADD CONSTRAINT chk_product_status CHECK (prod_status IN ('AVAILABLE', 'DISCONTINUED'));"
