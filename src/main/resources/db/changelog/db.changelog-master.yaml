@@ -33,10 +33,27 @@ databaseChangeLog:
       file: db/changelog/v1.2/015-add-audit-not-null-constraints.yaml
   - include:
       file: db/changelog/v1.2/016-add-version-column.yaml
+
   - include:
       file: db/changelog/v1.1/0072-seed-product-test.yaml
   - include:
       file: db/changelog/v1.1/0073-create-payment-table.yaml
+  - include:
+      file: db/changelog/v1.3/017-add-performance-indexes.yaml
+  - include:
+      file: db/changelog/v1.3/018-add-auto-increment-address-id.yaml
+  - include:
+      file: db/changelog/v1.3/025-sync-bigint-id-sequences.yaml
+  - include:
+      file: db/changelog/v1.3/026-fix-id-sequence.yaml
+  - include:
+      file: db/changelog/v1.3/029-add-stock-to-product.yaml
+  - include:
+      file: db/changelog/v1.3/030-add-mementos-and-zones.yaml
+  - include:
+      file: db/changelog/v1.3/031-add-product-to-order-line-item.yaml
+  - include:
+      file: db/changelog/v1.0/0006-add-unique-order-number.yaml
 
 
 

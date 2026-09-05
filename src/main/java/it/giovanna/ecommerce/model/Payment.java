@@ -1,5 +1,6 @@
 package it.giovanna.ecommerce.model;
 
+import it.giovanna.ecommerce.report.PaymentVisitor;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,4 +33,6 @@ public abstract class Payment extends AuditableBaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private PaymentStatus status;
+
+    public abstract <T> T accept(PaymentVisitor<T> visitor);
 }

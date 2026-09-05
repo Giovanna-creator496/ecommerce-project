@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: 017-add-performance-indexes
+      author: giovanna
+      changes:
+        - createIndex:
+            indexName: idx_purchase_order_status_date
+            tableName: purchase_order
+            columns:
+              - column:
+                  name: status
+              - column:
+                  name: order_date

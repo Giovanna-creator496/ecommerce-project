@@ -1,9 +1,16 @@
 package it.giovanna.Ecommerce.repository;
 
 import it.giovanna.ecommerce.EcommerceApplication;
-import it.giovanna.ecommerce.model.*;
-import it.giovanna.ecommerce.repository.*;
-import java.time.OffsetDateTime;
+import it.giovanna.ecommerce.model.Customer;
+import it.giovanna.ecommerce.model.Money;
+import it.giovanna.ecommerce.model.OrderLineItem;
+import it.giovanna.ecommerce.model.PurchaseOrder;
+import it.giovanna.ecommerce.model.Status;
+import it.giovanna.ecommerce.repository.AddressRepository;
+import it.giovanna.ecommerce.repository.CustomerRepository;
+import it.giovanna.ecommerce.repository.OrderLineItemRepository;
+import it.giovanna.ecommerce.repository.ProductRepository;
+import it.giovanna.ecommerce.repository.PurchaseOrderRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +18,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
@@ -25,122 +31,179 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DataJpaTest
-@ContextConfiguration(classes= EcommerceApplication.class)
+@ContextConfiguration(classes = EcommerceApplication.class)
 @Testcontainers
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class CrucibleIntegrationTests {
 
     @Container
     @ServiceConnection
-    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16-alpine");
+    static PostgreSQLContainer<?> postgres =
+            new PostgreSQLContainer<>("postgres:16-alpine");
 
-    @Autowired private TestEntityManager entityManager;
-    @Autowired private CustomerRepository customerRepository;
-    @Autowired private AddressRepository addressRepository;
-    @Autowired private PurchaseOrderRepository orderRepository;
-    @Autowired private ProductRepository productRepository;
-    @Autowired private OrderLineItemRepository lineItemRepository;
+    @Autowired
+    private TestEntityManager entityManager;
+
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    @Autowired
+    private AddressRepository addressRepository;
+
+    @Autowired
+    private PurchaseOrderRepository orderRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    @Autowired
+    private OrderLineItemRepository lineItemRepository;
 
     private Money createTestMoney(String amountStr, String currency) {
         Money money = new Money();
+
         try {
             var amountField = Money.class.getDeclaredField("amount");
             amountField.setAccessible(true);
             amountField.set(money, new BigDecimal(amountStr));
 
-            var currencyField = Money.class.getDeclaredField("currencyCode");
+            var currencyField =
+                    Money.class.getDeclaredField("currencyCode");
             currencyField.setAccessible(true);
             currencyField.set(money, currency);
+
         } catch (Exception e) {
-            throw new RuntimeException("Errore nell'impostazione di Money tramite Reflection", e);
+            throw new RuntimeException(
+                    "Errore nell'impostazione di Money tramite Reflection",
+                    e
+            );
         }
+
         return money;
     }
 
-
     private Customer createTestCustomer(String customerNum, String email) {
-        return Customer.builder()
+        Instant now = Instant.now();
+
+        Customer customer = Customer.builder()
                 .customerNumber(customerNum)
                 .email(email)
-                .createdAt(Instant.now())
+                .createdAt(now)
                 .build();
+
+        customer.setUpdatedAt(now);
+        customer.setCreatedBy("test");
+        customer.setUpdatedBy("test");
+
+        return customer;
     }
 
-
     private PurchaseOrder createTestOrder(String orderNumber) {
+        Instant now = Instant.now();
+
         return PurchaseOrder.builder()
                 .orderNumber(orderNumber)
                 .orderDate(OffsetDateTime.now())
                 .status(Status.PENDING)
                 .orderLineItems(new HashSet<>())
+                .createdAt(now)
+                .updatedAt(now)
+                .createdBy("test")
+                .updatedBy("test")
                 .build();
     }
-
-    private Product createTestProduct(String sku, String name) {
-        return Product.builder()
-                .sku(sku)
-                .name(name)
-                .price(createTestMoney("99.99", "EUR"))
-                .prodStatus(ProductStatus.AVAILABLE)
-                .build();
-    }
-
 
     // 1. THE DIRTY CHECKING TEST
     @Test
     @DisplayName("1. Dirty Checking Test - JPA aggiorna il DB senza repository.save()")
     void dirtyCheckingTest() {
-        Customer customer = customerRepository.saveAndFlush(createTestCustomer("CUST-001", "old.email@example.com"));
+
+        String suffix = UUID.randomUUID().toString();
+
+        Customer customer = customerRepository.saveAndFlush(
+                createTestCustomer(
+                        "CUST-" + suffix,
+                        "old-" + suffix + "@example.com"
+                )
+        );
+
         UUID customerId = customer.getId();
 
-
-        customer.setEmail("new.email@example.com");
+        customer.setEmail(
+                "new-" + suffix + "@example.com"
+        );
 
         entityManager.flush();
         entityManager.clear();
 
-        Customer updatedCustomer = customerRepository.findById(customerId).orElseThrow();
-        assertThat(updatedCustomer.getEmail()).isEqualTo("new.email@example.com");
+        Customer updatedCustomer =
+                customerRepository.findById(customerId)
+                        .orElseThrow();
+
+        assertThat(updatedCustomer.getEmail())
+                .isEqualTo(
+                        "new-" + suffix + "@example.com"
+                );
     }
 
     // 2. THE N+1 QUERY RESOLUTION TEST
     @Test
     @DisplayName("2. N+1 Query Test - Verifica caricamento ottimizzato degli ordini dal Seed Data")
     void nPlusOneQueryResolutionTest() {
+
         entityManager.clear();
 
-        List<PurchaseOrder> orders = orderRepository.findAllWithOrderLineItemsBy();
+        List<PurchaseOrder> orders =
+                orderRepository.findAllWithOrderLineItemsBy();
 
         assertThat(orders).hasSize(6);
 
         for (PurchaseOrder order : orders) {
-            assertThat(order.getOrderLineItems()).isNotNull();
+            assertThat(order.getOrderLineItems())
+                    .isNotNull();
         }
     }
-
 
     // 3. THE ORPHAN REMOVAL TEST
     @Test
     @DisplayName("3. Orphan Removal Test - Rimuovendo un'item dalla collezione viene eliminato dal DB")
     void orphanRemovalTest() {
-        PurchaseOrder order = orderRepository.findById(1L)
-                .orElseThrow(() -> new IllegalStateException("Ordine 1 non trovato nel DB!"));
 
-        assertThat(order.getOrderLineItems()).isNotEmpty();
+        String orderNumber =
+                "ORPHAN-TEST-" + UUID.randomUUID();
 
-        OrderLineItem itemToRemove = order.getOrderLineItems().iterator().next();
-        Long itemToRemoveId = itemToRemove.getId();
+        PurchaseOrder order =
+                createTestOrder(orderNumber);
 
-        order.getOrderLineItems().remove(itemToRemove);
-        itemToRemove.setPurchaseOrder(null);
+        OrderLineItem item = OrderLineItem.builder()
+                .quantity(1)
+                .lockedPrice(
+                        createTestMoney("99.99", "EUR")
+                )
+                .purchaseOrder(order)
+                .build();
+
+        order.getOrderLineItems().add(item);
+
+        order = orderRepository.saveAndFlush(order);
+
+        Long itemToRemoveId =
+                order.getOrderLineItems()
+                        .iterator()
+                        .next()
+                        .getId();
+
+        order.getOrderLineItems().remove(item);
+        item.setPurchaseOrder(null);
 
         orderRepository.saveAndFlush(order);
         entityManager.clear();
 
-        boolean existsInDb = lineItemRepository.existsById(itemToRemoveId);
+        boolean existsInDb =
+                lineItemRepository.existsById(itemToRemoveId);
+
         assertThat(existsInDb).isFalse();
     }
 
@@ -148,22 +211,32 @@ class CrucibleIntegrationTests {
     @Test
     @DisplayName("4. Constraint Safety Net Test - Salvando un ordine con numero duplicato viene sollevata un'eccezione di vincolo")
     void duplicateOrderNumberShouldThrowExceptionTest() {
-        PurchaseOrder existingOrder = orderRepository.findById(1L)
-                .orElseThrow(() -> new IllegalStateException("Ordine 1 non trovato!"));
 
-        String duplicateOrderNumber = existingOrder.getOrderNumber();
+        String orderNumber =
+                "DUPLICATE-TEST-" + UUID.randomUUID();
 
-        PurchaseOrder duplicateOrder = PurchaseOrder.builder()
-                .orderNumber(duplicateOrderNumber) // <--- Numero duplicato!
-                .orderDate(java.time.OffsetDateTime.now())
-                .status(Status.PENDING) // O uno status valido del tuo enum
-                .build();
+        PurchaseOrder existingOrder =
+                orderRepository.saveAndFlush(
+                        createTestOrder(orderNumber)
+                );
+
+        String duplicateOrderNumber =
+                existingOrder.getOrderNumber();
+
+        PurchaseOrder duplicateOrder =
+                PurchaseOrder.builder()
+                        .orderNumber(duplicateOrderNumber)
+                        .orderDate(OffsetDateTime.now())
+                        .status(Status.PENDING)
+                        .createdAt(Instant.now())
+                        .updatedAt(Instant.now())
+                        .createdBy("test")
+                        .updatedBy("test")
+                        .build();
 
         org.junit.jupiter.api.Assertions.assertThrows(
                 org.springframework.dao.DataIntegrityViolationException.class,
-                () -> {
-                    orderRepository.saveAndFlush(duplicateOrder);
-                },
+                () -> orderRepository.saveAndFlush(duplicateOrder),
                 "Ci si aspettava una DataIntegrityViolationException a causa del numero ordine duplicato!"
         );
     }

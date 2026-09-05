@@ -1,5 +1,6 @@
 package it.giovanna.ecommerce.model;
 
+import it.giovanna.ecommerce.report.PaymentVisitor;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
@@ -20,4 +21,9 @@ public class PayPalPayment extends Payment {
 
     @Column(name = "payer_email")
     private String payerEmail;
+
+    @Override
+    public <T> T accept(PaymentVisitor<T> visitor) {
+        return visitor.visit(this);
+    }
 }

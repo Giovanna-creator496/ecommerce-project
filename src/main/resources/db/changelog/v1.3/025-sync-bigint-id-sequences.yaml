@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: 025-sync-purchase-order-id-sequence
+      author: giovanna
+      changes:
+        - sql:
+            sql: |
+              SELECT setval(
+                pg_get_serial_sequence('purchase_order', 'id'),
+                COALESCE((SELECT MAX(id) FROM purchase_order), 1),
+                true
+              );

@@ -1,5 +1,6 @@
 package it.giovanna.ecommerce.model;
 
+import it.giovanna.ecommerce.report.PaymentVisitor;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
@@ -26,4 +27,9 @@ public class CreditCardPayment extends Payment {
 
     @Column(name = "expiration_year")
     private String expirationYear;
+
+    @Override
+    public <T> T accept(PaymentVisitor<T> visitor) {
+        return visitor.visit(this);
+    }
 }

@@ -13,6 +13,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
+
 @EqualsAndHashCode(of="sku", callSuper = false)
 public class Product extends AuditableBaseEntity {
     @Id
@@ -35,6 +36,9 @@ public class Product extends AuditableBaseEntity {
     @Column(nullable=false)
     @Embedded
     private Money price;
+
+    @Column(name = "stock_quantity", nullable = false)
+    private Integer stockQuantity;
 
     @OneToMany(mappedBy = "product", orphanRemoval = true)
     private Set<ProductCategory> productCategories;

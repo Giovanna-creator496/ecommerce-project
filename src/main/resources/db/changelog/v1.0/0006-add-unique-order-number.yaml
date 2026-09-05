@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0006-add-unique-order-number
+      author: giovanna
+      changes:
+        - addUniqueConstraint:
+            tableName: purchase_order
+            columnNames: order_number
+            constraintName: uk_purchase_order_order_number
