@@ -4,8 +4,8 @@ databaseChangeLog:
       author: giovanna
       changes:
         - createTable:
-          tableName: customer
-          columns:
+           tableName: customer
+           columns:
             - column:
                 name: id
                 type: UUID
@@ -33,8 +33,8 @@ databaseChangeLog:
       author: giovanna
       changes:
         - createTable:
-          tableName: customer_profile
-          columns:
+           tableName: customer_profile
+           columns:
             - column:
                 name: id
                 type: UUID
@@ -62,8 +62,8 @@ databaseChangeLog:
       author: giovanna
       changes:
         - createTable:
-          tableName: address
-          columns:
+           tableName: address
+           columns:
             - column:
                 name: id
                 type: BIGINT
@@ -97,8 +97,8 @@ databaseChangeLog:
       author: giovanna
       changes:
         - createTable:
-          tableName: product
-          columns:
+           tableName: product
+           columns:
             - column:
                 name: id
                 type: BIGINT
@@ -138,8 +138,8 @@ databaseChangeLog:
       author: giovanna
       changes:
         - createTable:
-          tableName: category
-          columns:
+           tableName: category
+           columns:
             - column:
                 name: id
                 type: BIGINT
@@ -154,15 +154,15 @@ databaseChangeLog:
                 name: parent_category_id
                 type: BIGINT
                 constraints:
-                  nullable: false
+                  nullable: true
 
   - changeSet:
       id: 006-product_category-table
       author: giovanna
       changes:
         - createTable:
-          tableName: product_category
-          columns:
+           tableName: product_category
+           columns:
             - column:
                 name: id
                 type: BIGINT
@@ -196,8 +196,8 @@ databaseChangeLog:
       author: giovanna
       changes:
         - createTable:
-          tableName: purchase_order
-          columns:
+           tableName: purchase_order
+           columns:
             - column:
                 name: id
                 type: BIGINT
@@ -212,7 +212,7 @@ databaseChangeLog:
                 name: order_date
                 type: TIMESTAMP WITH TIME ZONE
                 constraints:
-                  nullable: false
+                  nullable: true
 
             - column:
                 name: status
@@ -225,8 +225,8 @@ databaseChangeLog:
       author: giovanna
       changes:
         - createTable:
-          tableName: order_line_item
-          columns:
+           tableName: order_line_item
+           columns:
             - column:
                 name: id
                 type: BIGINT
@@ -261,8 +261,8 @@ databaseChangeLog:
       author: giovanna
       changes:
         - createTable:
-          tableName: shipment
-          columns:
+           tableName: shipment
+           columns:
             - column:
                 name: id
                 type: BIGINT

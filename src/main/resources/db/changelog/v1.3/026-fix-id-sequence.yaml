@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: 026-fix-id-sequence
+      author: giovanna
+      changes:
+        - sql:
+            sql: |
+              SELECT setval(
+                pg_get_serial_sequence('product', 'id'),
+                COALESCE((SELECT MAX(id) FROM product), 1),
+                true
+              );
+
+  - changeSet:
+      id: 027-fix-id-order-line-item-sequence
+      author: giovanna
+      changes:
+        - sql:
+            sql: |
+              SELECT setval(
+                pg_get_serial_sequence('order_line_item', 'id'),
+                COALESCE((SELECT MAX(id) FROM order_line_item), 1),
+                true
+              );
+
+  - changeSet:
+      id: 028-fix-id-category-sequence
+      author: giovanna
+      changes:
+        - sql:
+            sql: |
+              SELECT setval(
+                pg_get_serial_sequence('category', 'id'),
+                COALESCE((SELECT MAX(id) FROM category), 1),
+                true
+              );
+              

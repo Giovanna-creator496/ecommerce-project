@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-check-constraint-order-quantity
+      author: giovanna
+      changes:
+        - sql:
+            sql: "ALTER TABLE order_line_item ADD CONSTRAINT chk_order_quantity CHECK (quantity > 0);"

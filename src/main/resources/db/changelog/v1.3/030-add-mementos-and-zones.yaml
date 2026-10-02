@@ -1,0 +1,65 @@
+databaseChangeLog:
+  - changeSet:
+      id: 030-add-order-draft-memento-and-shipping-zone
+      author: giovanna
+
+      changes:
+
+        - createTable:
+            tableName: order_draft_memento
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: purchase_order_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: state_json
+                  type: JSONB
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: saved_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+
+        - createTable:
+            tableName: shipping_zone
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: zone_code
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+                    unique: true
+
+              - column:
+                  name: base_cost
+                  type: NUMERIC(19,2)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: delivery_days
+                  type: INTEGER
+                  constraints:
+                    nullable: false

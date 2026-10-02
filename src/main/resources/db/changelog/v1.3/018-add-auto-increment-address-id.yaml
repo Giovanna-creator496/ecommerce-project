@@ -1,0 +1,70 @@
+databaseChangeLog:
+  - changeSet:
+      id: 018-add-auto-increment-address-id
+      author: giovanna
+      changes:
+        - addAutoIncrement:
+            tableName: address
+            columnName: id
+            columnDataType: BIGINT
+            generationType: BY DEFAULT
+
+  - changeSet:
+      id: 019-add-auto-increment-product-id
+      author: giovanna
+      changes:
+        - addAutoIncrement:
+            tableName: product
+            columnName: id
+            columnDataType: BIGINT
+            generationType: BY DEFAULT
+
+  - changeSet:
+      id: 020-add-auto-increment-category-id
+      author: giovanna
+      changes:
+        - addAutoIncrement:
+            tableName: category
+            columnName: id
+            columnDataType: BIGINT
+            generationType: BY DEFAULT
+
+  - changeSet:
+      id: 021-add-auto-increment-product-category-id
+      author: giovanna
+      changes:
+        - addAutoIncrement:
+            tableName: product_category
+            columnName: id
+            columnDataType: BIGINT
+            generationType: BY DEFAULT
+
+  - changeSet:
+      id: 022-add-auto-increment-purchase-order-id
+      author: giovanna
+      changes:
+        - addAutoIncrement:
+            tableName: purchase_order
+            columnName: id
+            columnDataType: BIGINT
+            generationType: BY DEFAULT
+
+  - changeSet:
+      id: 023-add-auto-increment-order-line-item-id
+      author: giovanna
+      changes:
+        - addAutoIncrement:
+            tableName: order_line_item
+            columnName: id
+            columnDataType: BIGINT
+            generationType: BY DEFAULT
+
+  - changeSet:
+      id: 024-add-auto-increment-shipment-id
+      author: giovanna
+      changes:
+        - addAutoIncrement:
+            tableName: shipment
+            columnName: id
+            columnDataType: BIGINT
+            generationType: BY DEFAULT

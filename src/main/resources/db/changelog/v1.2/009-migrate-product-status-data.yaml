@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: 009-migrate-product-status-data
+      author: giovanna
+      changes:
+        - sql:
+           sql:
+            "UPDATE product
+             SET prod_status= 'AVAILABLE'
+             WHERE active= true;
+        
+             UPDATE product
+             SET prod_status= 'DISCONTINUED'
+             WHERE active= false;"

@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      id: 016-add-version-column
+      author: giovanna
+      changes:
+
+        - addColumn:
+            tableName: product
+            columns:
+              - column:
+                  name: version
+                  type: BIGINT
+                  defaultValueNumeric: 0
+                  constraints:
+                    nullable: false
+
+        - addColumn:
+            tableName: purchase_order
+            columns:
+              - column:
+                  name: version
+                  type: BIGINT
+                  defaultValueNumeric: 0
+                  constraints:
+                    nullable: false
+
+
+        - addColumn:
+            tableName: customer
+            columns:
+              - column:
+                  name: version
+                  type: BIGINT
+                  defaultValueNumeric: 0
+                  constraints:
+                    nullable: false

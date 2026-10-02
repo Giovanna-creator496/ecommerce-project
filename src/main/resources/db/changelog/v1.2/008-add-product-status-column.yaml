@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 008-add-product-status-column
+      author: giovanna
+      changes:
+        - addColumn:
+           tableName: product
+           columns:
+           - column:
+              name: prod_status
+              type: VARCHAR(50)

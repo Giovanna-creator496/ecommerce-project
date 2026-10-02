@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: 100
+      author: giovanna
+      context: dev,test
+      changes:
+
+        - insert:
+            tableName: order_line_item
+            columns:
+              - column:
+                  { name: id, valueNumeric: 100 }
+              - column:
+                  { name: purchase_order_id, valueNumeric: 1 }
+              - column:
+                  { name: quantity, valueNumeric: 2 }
+              - column:
+                  { name: amount, valueNumeric: 19.99 }
+              - column:
+                  { name: currency_code, value: EUR }

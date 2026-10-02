@@ -14,8 +14,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@EqualsAndHashCode(of="customerNumber")
-public class Customer {
+@EqualsAndHashCode(of="customerNumber", callSuper = false)
+public class Customer extends AuditableBaseEntity{
     @Id
     @GeneratedValue
     private UUID id;

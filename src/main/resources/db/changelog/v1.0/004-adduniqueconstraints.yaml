@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      id: 17
+      author: giovanna
+      changes:
+        - addUniqueConstraint:
+            tableName: product
+            columnNames: sku
+            constraintName: uq_product_sku
+
+  - changeSet:
+      id: 18
+      author: giovanna
+      changes:
+        - addUniqueConstraint:
+            tableName: customer
+            columnNames: email
+            constraintName: uq_customer_email
+  - changeSet:
+      id: 19
+      author: giovanna
+      changes:
+        - addUniqueConstraint:
+            tableName: customer
+            columnNames: customer_number
+            constraintName: uq_customer_number
+
+  - changeSet:
+      id: 20
+      author: giovanna
+      changes:
+        - addUniqueConstraint:
+            tableName: shipment
+            columnNames: purchase_order_id
+            constraintName: uq_shipment_order
+

@@ -1,3 +1,61 @@
 databaseChangeLog:
   - include:
       file: db/changelog/v1.0/001-createtables.yaml
+  - include:
+      file: db/changelog/v1.0/002-addprimarykeys.yaml
+  - include:
+      file: db/changelog/v1.0/003-addforeignkey.yaml
+  - include:
+      file: db/changelog/v1.0/004-adduniqueconstraints.yaml
+  - include:
+      file: db/changelog/v1.0/005-addcheckconstraints.yaml
+  - include:
+      file: db/changelog/v1.1/006-seed-reference-data.yaml
+  - include:
+      file: db/changelog/v1.1/007-seed-dev-data.yaml
+  - include:
+      file: db/changelog/v1.2/008-add-product-status-column.yaml
+  - include:
+      file: db/changelog/v1.2/009-migrate-product-status-data.yaml
+  - include:
+      file: db/changelog/v1.2/010-drop-product-active-column.yaml
+  - include:
+      file: db/changelog/v1.2/011-make-status-not-null.yaml
+  - include:
+      file: db/changelog/v1.2/012-add-check-constraint-enum.yaml
+  - include:
+      file: db/changelog/v1.1/0071-seed-dev-data-test.yaml
+  - include:
+      file: db/changelog/v1.2/013-add-audit-columns.yaml
+  - include:
+      file: db/changelog/v1.2/014-populate-existing-audit-data.yaml
+  - include:
+      file: db/changelog/v1.2/015-add-audit-not-null-constraints.yaml
+  - include:
+      file: db/changelog/v1.2/016-add-version-column.yaml
+
+  - include:
+      file: db/changelog/v1.1/0072-seed-product-test.yaml
+  - include:
+      file: db/changelog/v1.1/0073-create-payment-table.yaml
+  - include:
+      file: db/changelog/v1.3/017-add-performance-indexes.yaml
+  - include:
+      file: db/changelog/v1.3/018-add-auto-increment-address-id.yaml
+  - include:
+      file: db/changelog/v1.3/025-sync-bigint-id-sequences.yaml
+  - include:
+      file: db/changelog/v1.3/026-fix-id-sequence.yaml
+  - include:
+      file: db/changelog/v1.3/029-add-stock-to-product.yaml
+  - include:
+      file: db/changelog/v1.3/030-add-mementos-and-zones.yaml
+  - include:
+      file: db/changelog/v1.3/031-add-product-to-order-line-item.yaml
+  - include:
+      file: db/changelog/v1.0/0006-add-unique-order-number.yaml
+
+
+
+
+

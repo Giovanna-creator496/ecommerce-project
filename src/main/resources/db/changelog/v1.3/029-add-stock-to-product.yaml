@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: 029-add-stock-to-product
+      author: giovanna
+      changes:
+        - addColumn:
+            tableName: product
+            columns:
+              - column:
+                  name: stock_quantity
+                  type: INT
+                  defaultValueNumeric: 100
+                  constraints:
+                    nullable: false

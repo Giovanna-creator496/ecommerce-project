@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: 010-drop-product-active-column
+      author: giovanna
+      changes:
+      - dropColumn:
+         tableName: product
+         columnName: active
